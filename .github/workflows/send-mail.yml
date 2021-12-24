@@ -1,0 +1,64 @@
+name : CI
+
+on : 
+  workflow_dispatch:
+    inputs:
+      name :
+        description : 'EMAIL'
+        required  : true
+  
+jobs: 
+  send_mail : 
+    runs-on : Ubuntu-latest
+    
+    steps:
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v3
+        with:
+          # Required mail server address:
+          server_address: smtp.gmail.com
+          # Required mail server port:
+          server_port: 465
+          # Optional (recommended): mail server username:
+          username: ${{secrets.MAIL_USERNAME}}
+          # Optional (recommended) mail server password:
+          password: ${{secrets.MAIL_PASSWORD}}
+          # Required mail subject:
+          subject: Test Email trigger by github actions
+          # Required recipients' addresses:
+          to: suripa.saha111@gmail.com, chatterjee.pradipta@tcs.com, ankit.rathore@tcs.com
+          # Required sender full name (address can be skipped):
+          from: pradipta.chatterjee98@gmail.com
+          # Optional whether this connection use TLS (default is true if server_port is 465)
+          secure: true
+          
+          # Optional plain body:
+          body: Hi Suripa! 
+                
+                Email has been triggered successfully,
+                
+                Regards,
+                SCB DevOps Team
+          #Optional HTML Body
+          html_body: |
+              <!DOCTYPE html>
+              <html>
+              <body>
+              <h1 style="color: green">Welcome to Standard Charterd Bank !!</h1>
+              <p style="font-family:'Courier New'">Hi User,
+              <br>
+              <br> You have been successfully Onboarded.
+              <br>
+              <br>Regards,
+              <br>TCS - SCB DevOps Team
+              </p>
+              </body>
+              </html>
+          # Optional carbon copy recipients:
+          cc: pradipta.chatterjee96@gmail.com
+          # Optional blind carbon copy recipients:
+          ignore_cert: true
+          # Optional converting Markdown to HTML (set content_type to text/html too):
+          convert_markdown: true
+      
+      
