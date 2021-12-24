@@ -3,9 +3,10 @@ name : CI
 on : 
   workflow_dispatch:
     inputs:
-      name :
+      EMAIL :
         description : 'EMAIL'
         required  : true
+      
   
 jobs: 
   send_mail : 
