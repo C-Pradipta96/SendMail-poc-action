@@ -6,7 +6,8 @@ on :
       EMAIL :
         description : 'EMAIL'
         required  : true
-      
+env :
+  EMAIL : ${{ inputs.username }}
   
 jobs: 
   send_mail : 
@@ -27,7 +28,7 @@ jobs:
           # Required mail subject:
           subject: Test Email trigger by github actions
           # Required recipients' addresses:
-          to: suripa.saha111@gmail.com, chatterjee.pradipta@tcs.com, ankit.rathore@tcs.com
+          to: ${{env.EMAIL}}
           # Required sender full name (address can be skipped):
           from: pradipta.chatterjee98@gmail.com
           # Optional whether this connection use TLS (default is true if server_port is 465)
