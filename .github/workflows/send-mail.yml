@@ -14,6 +14,11 @@ jobs:
     runs-on : Ubuntu-latest
     
     steps:
+      - name: validate Email Domain
+        uses :  ActionsDesk/invite_user@release/v1
+        with:
+          CONFIG_PATH: ".github/config.json"
+          USER_ROLE: "direct_member"
       - name: Send mail
         uses: dawidd6/action-send-mail@v3
         with:
