@@ -7,7 +7,7 @@ on :
         description : 'EMAIL'
         required  : true
 env :
-  EMAIL : ${{ inputs.username }}
+  EMAIL : ${{ github.event.inputs.EMAIL }}
   
 jobs: 
   send_mail : 
